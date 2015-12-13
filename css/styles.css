@@ -1,0 +1,80 @@
+html{
+  background-size: cover;
+  background-color: #13477D;
+}
+
+
+.wrapper {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.time-controls {
+  padding-top: 2%;
+}
+
+.time-controls h4 {
+  display: inline-block;
+  font-weight: 300px;
+}
+
+.time-btn {
+  color: #fff;
+  background-color: #000;
+  border-radius: 50%;
+  border: none;
+  width: 20px;
+  height: 20px;
+}
+
+#minutes {
+  padding: 10px;
+  color: #fff;
+}
+
+.header {
+  color: #fff;
+}
+.circle {
+  margin: auto;
+  width: 25%;
+  min-width: 200px;
+} 
+
+.circle:after {
+  content: " ";
+  margin: auto;
+  border: solid 2px #fff;
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  border-radius: 50%;
+}
+
+#timer {
+  float: left;
+  width: 100%;
+  padding-top: 50%;
+}
+
+#timer h2 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1em;
+  margin-top: -0.5em;
+  text-align: center;
+}
+
+
+.btn {
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 25px;
+}
