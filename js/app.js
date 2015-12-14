@@ -5,19 +5,22 @@ $(document).ready(function() {
   var minutes = 25;
   var seconds = 0;
 
+
   function setMinutes() {
-    $("#timer").html("<h2>" + workMinutes + "</h2>")
+    $("#timer").html("<h2>" + minutes + "</h2>");
   };
   
   function formatClock() {
     if (seconds < 10) { //adds leading zero for seconds
        seconds = "0" + seconds;
       }
+  }
     
   function displayTimer() {
       if (seconds < 10) { //adds leading zero for seconds
         seconds = "0" + seconds;
       }
+    }
 
   function countdown() {
 
@@ -85,12 +88,12 @@ $(document).ready(function() {
   setMinutes();
 
     $(".plus").click(function() {
-      workMinutes++;
+      minutes++;
       setMinutes();
     });
 
     $(".minus").click(function() {
-      workMinutes--;
+      minutes--;
       setMinutes();
     });
 
@@ -101,7 +104,7 @@ $(document).ready(function() {
      
      countdown();
    });
-  
+ 
 });
 
 //so the pause button works, although the paused time needs to be formatted. BUT how to prevent the interval from then resetting? Tried adding toggle classes - didn't help. 
