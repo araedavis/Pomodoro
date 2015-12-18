@@ -32,8 +32,8 @@ function startTimer(){
 
 function pauseTimer(){
   clearInterval(intervalId);
-  console.log('interval cleared');
-  $("#timer").html(minutes + ":" + seconds);
+
+  displayTime();
 }
 
 
