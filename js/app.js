@@ -5,83 +5,101 @@ var seconds = 0;
 
 var intervalId;
 
-function displayTime(){
-    var timerHTML = "<h2>" + minutes + ":" + seconds + "</h2>";
-    
-    if (seconds < 10) { //adds leading zero for seconds
-       timerHTML = "<h2>" + minutes + ":0" + seconds + "</h2>"; ;
+//timer functions
+
+  function displayTime(){
+      var timerHTML = "<h2>" + minutes + ":" + seconds + "</h2>";
+      
+      if (seconds < 10) { //adds leading zero for seconds
+         timerHTML = "<h2>" + minutes + ":0" + seconds + "</h2>"; ;
+      }
+
+      $('#timer').html(timerHTML);
     }
 
-    $('#timer').html(timerHTML);
+  function countdown(){
+      seconds--;
+      if (seconds < 0) {
+        seconds = 59;
+        minutes--;
+      }
+      displayTime();
+    }
+
+  function startTimer(){
+    if (minutes > 0 || seconds > 0){
+      intervalId = setInterval(countdown, 1000);
+    }
   }
 
-function countdown(){
-    seconds--;
-    if (seconds < 0) {
-      seconds = 59;
-      minutes--;
+  function timeOver(){
+    if(minutes == 0 && seconds == "00"){
+      pauseTimer();
     }
+  }
+
+  function pauseTimer(){
+    clearInterval(intervalId);
     displayTime();
   }
 
-function startTimer(){
-  if (minutes > 0 || seconds > 0){
-    intervalId = setInterval(countdown, 1000);
+  function refreshTimer(){
+    minutes = "00";
+    seconds = 0;
+    displayTime();
+  }	
+
+  function breakTime(){
+    minutes = 5;
+    seconds = 0;
+    displayTime();
   }
-}
 
-function pauseTimer(){
-  clearInterval(intervalId);
+  //UI controls
+  	//plus & minus button controls
 
-  displayTime();
-}
+  	$(".plus").click(function() {
+        minutes++;
+        displayTime();
+      });
 
-
-  displayTime();
-	
-
-	//plus & minus button controls
-      //need to add logic to prevent negative values
-      //logic for plus and minus buttons to add to minutes when counter is paused?
-
-	$(".plus").click(function() {
-      minutes++;
-      displayTime();
-    });
-
-    $(".minus").click(function() {
-      minutes--;
-      displayTime();
-    });
+      $(".minus").click(function() {
+        if (minutes > 0){
+          minutes--;
+        }
+        displayTime();
+      });
 
 
-   //start, pause, refresh, break controls 
-   $(".start").click(function(){
-   		$('.start').toggleClass('paused');
-     	$(".start-i").toggleClass('fa-play fa-pause');
+     //start, pause controls 
+     $(".start").click(function(){
+     		$('.start').toggleClass('paused');
+       	$(".start-i").toggleClass('fa-play fa-pause');
 
+        if($('.start').hasClass('paused') == false){
+          startTimer();
+          timeOver();
 
-      //still have to figure out how to clear interval / pause timer 
-    if($('.start').hasClass('paused') == false){
-      startTimer();
+        } else if($('.start').hasClass('paused') == true){
+          pauseTimer();      
+        }
 
-    } else if($('.start').hasClass('paused') == true){
-      pauseTimer();
-      
-    }
-      
-   });
+     });
 
-   $(".refresh").click(function(){
-      minutes = "00";
-      seconds = 0;
-      displayTime();
-   });
+     //refresh controls
 
-   $(".break").click(function(){
-      minutes = 5;
-      displayTime();
-   });
+     $(".refresh").click(function(){
+        refreshTimer();
+     });
+
+     //break controls
+
+     $(".break").click(function(){
+        breakTime();
+     });
+
+   //app begins
+   displayTime();
       
 
 });
