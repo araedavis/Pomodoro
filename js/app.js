@@ -3,6 +3,8 @@ $(document).ready(function(){
 var minutes = 25;
 var seconds = 0;
 
+var intervalId;
+
 function displayTime(){
     var timerHTML = "<h2>" + minutes + ":" + seconds + "</h2>";
     
@@ -21,6 +23,19 @@ function countdown(){
     }
     displayTime();
   }
+
+function startTimer(){
+  if (minutes > 0 || seconds > 0){
+    intervalId = setInterval(countdown, 1000);
+  }
+}
+
+function pauseTimer(){
+  clearInterval(intervalId);
+  console.log('interval cleared');
+  $("#timer").html(minutes + ":" + seconds);
+}
+
 
   displayTime();
 	
@@ -46,15 +61,20 @@ function countdown(){
      	$(".start-i").toggleClass('fa-play fa-pause');
 
 
-      var interval = setInterval(countdown, 1000);
-
       //still have to figure out how to clear interval / pause timer 
-    
+    if($('.start').hasClass('paused') == false){
+      startTimer();
+
+    } else if($('.start').hasClass('paused') == true){
+      pauseTimer();
+      
+    }
       
    });
 
    $(".refresh").click(function(){
       minutes = "00";
+      seconds = 0;
       displayTime();
    });
 
