@@ -1,5 +1,3 @@
-$(document).ready(function(){
-
 var minutes = 25;
 var seconds = 0;
 
@@ -7,7 +5,7 @@ var intervalId;
 
 //timer functions
 
-  function displayTime(){
+  function displayTime(){ //args minutes and seconds
       var timerHTML = "<h2>" + minutes + ":" + seconds + "</h2>";
       
       if (seconds < 10) { //adds leading zero for seconds
@@ -101,5 +99,3 @@ var intervalId;
    //app begins
    displayTime();
       
-
-});
